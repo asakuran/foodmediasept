@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JDines website</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            burgundy: {
+              50: '#fdf2f4',
+              100: '#fbe5e9',
+              500: '#b83253',
+              700: '#8b263e',
+              800: '#6e1d30',
+              900: '#521422',
+            },
+            warmcream: '#fdfbf7',
+            charcoal: '#2c2c2c',
+            softgray: '#f4f2ee',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    .glass-header {
+      background: rgba(44, 44, 44, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    .badge-burgundy {
+      background: linear-gradient(135deg, #8b263e, #521422);
+    }
+  </style>
+</head>
+<body class="bg-warmcream text-charcoal font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- NAVIGATION BAR -->
+  <nav class="sticky top-0 z-50 glass-header text-white shadow-xl border-b border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-full badge-burgundy flex items-center justify-center shadow-lg border border-burgundy-500/30">
+            <span class="font-serif font-bold text-white text-lg">J</span>
+          </div>
+          <div>
+            <h1 class="font-serif font-bold text-lg leading-tight tracking-wide text-amber-100">JDines</h1>
+          </div>
+        </div>
+
+        <!-- NAVIGATION TABS -->
+        <div class="hidden md:flex space-x-2 bg-stone-900/90 p-1.5 rounded-2xl border border-stone-800">
+          <button onclick="switchTab('section4')" id="nav-btn-section4" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800">
+            <i class="fa-solid mr-2 text-amber-300"></i>Home
+          </button>
+          <button onclick="switchTab('section1')" id="nav-btn-section1" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-burgundy-700 text-white shadow-md">
+            <i class="fa-solid mr-2 text-amber-300"></i>Chef Study
+          </button>
+          <button onclick="switchTab('section2')" id="nav-btn-section2" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800">
+            <i class="fa-solid mr-2 text-amber-300"></i>Foodie Posts
+          </button>
+          <button onclick="switchTab('section3')" id="nav-btn-section3" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800">
+            <i class="fa-solid mr-2 text-amber-300"></i>Food Critique
+          </button>
+        </div>
+
+        <!-- MOBILE MENU BUTTON -->
+        <div class="md:hidden">
+          <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-amber-200 hover:bg-stone-800 focus:outline-none">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE DROPDOWN -->
+<!-- MOBILE DROPDOWN -->
+<div id="mobile-menu" class="hidden md:hidden bg-stone-900 border-t border-stone-800 px-4 pt-2 pb-4 space-y-2">
+    <button onclick="switchTab('section4'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-stone-300 bg-stone-800 hover:text-white">
+        <i class="fa-solid mr-2 text-amber-300"></i>Home
+    </button>
+    <button onclick="switchTab('section1'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-stone-300 bg-stone-800 hover:text-white">
+        <i class="fa-solid mr-2 text-amber-300"></i>Chef Study
+    </button>
+    <button onclick="switchTab('section2'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-stone-300 bg-stone-800 hover:text-white">
+        <i class="fa-solid mr-2 text-amber-300"></i>Foodie Posts
+    </button>
+    <button onclick="switchTab('section3'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-stone-300 bg-stone-800 hover:text-white">
+        <i class="fa-solid mr-2 text-amber-300"></i>Food Critique
+    </button>
+</div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 py-10 w-full">
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 1: CELEBRITY CHEF PROFILE (CHEF ADAM BYATT)                      -->
+    <!-- ========================================================================= -->
+    <div id="section1" class="space-y-12 hidden">
+      
+      <!-- HERO BANNER -->
+      <section class="relative bg-stone-900 rounded-3xl overflow-hidden shadow-2xl border border-stone-800 text-white">
+        <div class="absolute inset-0 bg-cover bg opacity-30" style="background-image: url(https://gusbourne.s3.amazonaws.com/uploads/image/file/709/landscape_lg_Open_ktichen_Adam_Byatt_landscape_copy.jpg);"></div>
+        <div class="relative z-10 p-8 sm:p-12 lg:p-16 max-w-4xl">
+
+          <h2 class="text-4xl sm:text-5xl font-serif font-bold text-white tracking-tight mb-3">
+            Chef Adam Byatt
+          </h2>
+          <p class="text-amber-300 text-lg sm:text-xl font-serif italic mb-6">
+            Chef Patron of Trinity (Clapham, London) • Michelin Star Owner • Craft & Technique Advocate
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-stone-800 text-xs">
+            <div>
+              <span class="text-stone-400 block uppercase tracking-wider text-[10px]">Birthplace</span>
+              <span class="text-white font-semibold text-sm">Rainham, Essex, UK</span>
+            </div>
+            <div>
+              <span class="text-stone-400 block uppercase tracking-wider text-[10px]">Flagship Restaurant</span>
+              <span class="text-white font-semibold text-sm">Trinity (1 Michelin Star)</span>
+            </div>
+            <div>
+              <span class="text-stone-400 block uppercase tracking-wider text-[10px]">Training Ground</span>
+              <span class="text-white font-semibold text-sm">Claridge's (Age 16) & Le Gavroche</span>
+            </div>
+            <div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- (A) REASONS WHY ADAM BYATT IS MY FAVORITE CELEBRITY CHEF & BIOGRAPHY -->
+      <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-stone-200 space-y-8">
+        <div class="flex items-center justify-between border-b border-stone-200 pb-4">
+          <div class="flex items-center space-x-3">
+
+            <div>
+              <h3 class="text-2xl font-serif font-bold text-stone-900">Background</h3>
+
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2 space-y-4 text-stone-700 leading-relaxed text-sm">
+            <p class="first-letter:text-4xl first-letter:font-serif first-letter:font-bold first-letter:text-burgundy-700 first-letter:mr-2 first-letter:float-left">
+              Adam Byatt is a British Michelin-starred chef and restaurateur from Rainham, Essex, England. Byatt was surrounded by culinary traditions from an early age; his mother was a professionally trained chef and his grandfather served as an army cook. At just 16 years old, after winning a prestigious apprenticeship scholarship, he joined the kitchen brigade at <em>Claridge’s Hotel</em> in London, later refining his high French technique under legendary figures at <em>Le Gavroche</em>.
+            </p>
+            <p>
+              In 2006, Byatt established his flagship restaurant, <strong>Trinity</strong>, in Clapham Old Town, London. Under his stewardship, Trinity earned a Michelin Star and became a cornerstone of modern British neighborhood fine dining. In 2019, Byatt was named <em>Chef Mentor of the Year</em> at the Craft Guild of Chefs Awards, cementing his status as a master educator in contemporary gastronomy.
+            </p>
+            <p>
+              What sets Byatt apart in modern media is his refusal to rely on performative theatricality. On broadcasts like BBC’s <em>Saturday Kitchen</em> and <em>Great British Menu</em>, he communicates with serene precision, championing seasonal British produce, zero-waste nose-to-tail philosophy, and traditional classical stocks. He embodies the ideal modern mentor—balancing culinary authority with media warmth.
+            </p>
+          </div>
+
+          <!-- CHEF PROFILE SUMMARY CARD -->
+          <div class="bg-softgray rounded-2xl p-6 border border-stone-200 flex flex-col justify-between">
+            <div class="space-y-4">
+              <h4 class="font-serif font-bold text-stone-900 text-base flex items-center border-b border-stone-300 pb-3">
+                <i class="fa-solid fa-id-card text-burgundy-700 mr-2"></i> Training History
+              </h4>
+              <ul class="space-y-3 text-xs text-stone-700">
+                <li class="flex justify-between">
+                  <span class="font-medium text-stone-500">Claridge's Hotel</span>
+                  <span class="font-semibold text-stone-900"></span> 
+                </li>
+                <li class="flex justify-between">
+                  <span class="font-medium text-stone-500">Bournemouth College</span>
+                  <span class="font-semibold text-stone-900"></span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="font-medium text-stone-500">The Berkeley Hotel</span>
+                  <span class="font-semibold text-stone-900"></span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="font-medium text-stone-500">The Square</span>
+                  <span class="font-semibold text-stone-900"></span>
+                </li>
+                <li class="flex justify-between">
+   
+                </li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-stone-300 text-[11px] text-stone-600 italic">
+
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <!-- AUTHORED BOOKS & TV APPEARANCES -->
+      <section class="grid lg:grid-cols-2 gap-8">
+        
+        <!-- BOOKS CARD -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-stone-200">
+          <div class="flex items-center space-x-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-burgundy-50 text-burgundy-700 flex items-center justify-center font-bold">
+              <i class="fa-solid fa-book text-lg"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-serif font-bold text-stone-900">Authored Cookbooks</h3>
+
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="p-4 rounded-2xl bg-softgray border border-stone-200 hover:border-burgundy-500 transition-colors">
+              <div class="flex justify-between items-start mb-1">
+                <h4 class="font-bold text-stone-900 text-sm sm:text-base">How To Eat In: Cooking at Home for Family and Friends</h4>
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-burgundy-100 text-burgundy-800">2010</span>
+              </div>
+
+              <p class="text-xs text-stone-700 leading-relaxed">An earlier, beloved cookbook by Byatt focusing on elevated yet accessible home cooking. Packed with over 100 recipes tailored for cooking comfort, classic dishes, and hosting family and friends at home.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-softgray border border-stone-200 hover:border-burgundy-500 transition-colors">
+              <div class="flex justify-between items-start mb-1">
+                <h4 class="font-bold text-stone-900 text-sm sm:text-base">Trinity: The Cookbook</h4>
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-burgundy-100 text-burgundy-800">2026</span>
+              </div>
+
+              <p class="text-xs text-stone-700 leading-relaxed">Released to celebrate 20 years of his acclaimed Michelin-starred London restaurant Trinity in Clapham, this book features a comprehensive collection of restaurant dishes, stories behind the building of Trinity, and day-long feast recipes. Includes over 80–100 signature recipes (such as semi-smoked salmon, beef tartare, and blanquette of rabbit), festive Christmas dishes, and The Trinity Repertoire—a practical mini-bible/compendium of foundational everyday recipes (like stocks, sauces, roast chicken, and shortbread) inspired by classical culinary traditions.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TV SHOWS & BROADCASTING -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-stone-200">
+          <div class="flex items-center space-x-3 mb-6">
+
+          </div>
+          <div class="space-y-4">
+            <div class="p-4 rounded-2xl bg-softgray border border-stone-200 hover:border-burgundy-500 transition-colors">
+              <div class="flex justify-between items-center mb-1">
+                 <img src="Images/howtoeatin.png">
+              </div>
+            
+            </div>
+
+            <div class="p-4 rounded-2xl bg-softgray border border-stone-200 hover:border-burgundy-500 transition-colors">
+              <div class="flex justify-between items-center mb-1">
+              <img src="Images/trinitycookbook.png">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+
+
+      <!-- (B) 3 SPECIFIC MEDIA ITEMS AUTHORED BY ADAM BYATT ANALYZED -->
+      <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-stone-200 space-y-8">
+        <div class="flex items-center justify-between border-b border-stone-200 pb-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-burgundy-50 text-burgundy-700 flex items-center justify-center font-bold">
+              <i class="fa-solid fa-photo-film text-lg"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-serif font-bold text-stone-900">Media</h3>
+              <p class="text-xs text-stone-500 uppercase tracking-wider"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEM 1: COOKBOOK RECIPE WITH APA CITATION -->
+        <div class="bg-softgray rounded-2xl p-6 border border-stone-200 grid lg:grid-cols-3 gap-6">
+          <div class="space-y-3">
+            <div class="inline-flex items-center space-x-2 bg-pink-100 text-pink-700 text-xs px-3 py-1 rounded-full font-bold">
+              <i class="fa-brands fa-instagram"></i>
+              <span>Instagram Post</span>
+            </div>
+            <h4 class="font-serif font-bold text-xl text-stone-900">I finally made this on the channel... Trinity's signature Tarte Tatin</h4>
+            <div class="p-3 bg-white rounded-xl border border-burgundy-200 text-xs text-stone-800 space-y-1">
+              <span class="font-bold text-burgundy-800 block">Citation:</span>
+              <p class="font-serif italic text-stone-600">Byatt, A. (2026). <em>Instagram</em> </p>
+            </div>
+            <div class="rounded-xl overflow-hidden border border-stone-300 shadow-sm">
+              <img src="Images/tartetatin.png" alt="Trinity's Tarte Tatin">
+            </div>
+          </div>
+          <div class="lg:col-span-2 space-y-3 text-xs sm:text-sm text-stone-700">
+            <h5 class="font-bold text-burgundy-800 text-base">Why I chose this:</h5>
+            <p>
+              Tarte Tatin is one of Adam Byatt’s signature desserts at Trinity. Sourcing this from his Instagram, how he presents high-end pastry techniques in a fast, visually captivating social format.
+            </p>
+            <div class="bg-white p-4 rounded-xl border border-stone-200 space-y-2">
+              <p class="text-xs font-semibold text-stone-900 uppercase tracking-wider">Summary and takeaway:</p>
+              <ul class="list-disc pl-5 text-xs space-y-1.5 text-stone-600">
+                <li><strong>Summary:</strong> In this short reel, Byatt never thought that he would share this recipe online. He demonstrates turning the edges of peeled apples for uniform arrangement, emphasizing to dehydrate the apple, poking the puff pastry to allow the steam to be released. He also gives a visual cue to show that the butter and sugar is perfectly emulsified before putting the whole thing into the oven. Finished with prune Armagnac ice cream and pouring cream. </li>
+                <li><strong>Takeaway:</strong> Dehydrating the apples to reduce moisture is a brilliant culinary technique.  It proves that elite pastry relies on controlling moisture and thermal science rather than relying on luck. The tight close-up framing and clear visual cues makes it easy for viewers to follow as well.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEM 2: INSTAGRAM POST -->
+        <div class="bg-softgray rounded-2xl p-6 border border-stone-200 grid lg:grid-cols-3 gap-6">
+          <div class="space-y-3">
+            <div class="inline-flex items-center space-x-2 bg-pink-100 text-pink-700 text-xs px-3 py-1 rounded-full font-bold">
+              <i class="fa-brands fa-instagram"></i>
+              <span>Instagram Post</span>
+            </div>
+            <h4 class="font-serif font-bold text-xl text-stone-900">Duchesse Potatoes - an underrated spud</h4>
+            <div class="p-3 bg-white rounded-xl border border-burgundy-200 text-xs text-stone-800 space-y-1">
+              <span class="font-bold text-burgundy-800 block">Citation:</span>
+              <p class="font-serif italic text-stone-600">Byatt, A. (2026). <em>Instagram</em> </p>
+            </div>
+            <div class="rounded-xl overflow-hidden border border-stone-300 shadow-sm relative">
+              <img src="Images/pommeduchesse.png" alt="Pommes Duchesse">
+              <span class="absolute  text-[10px] px-2 py-0.5 rounded-full"><i class="fa-solid  mr-1"></i></span>
+            </div>
+          </div>
+          <div class="lg:col-span-2 space-y-3 text-xs sm:text-sm text-stone-700">
+            <h5 class="font-bold text-burgundy-800 text-base">Why I chose this:</h5>
+            <p>
+              Byatt posted this classic side dish on Instagram under the banner of bringing back forgotten classical French potato techniques.
+            </p>
+            <div class="bg-white p-4 rounded-xl border border-stone-200 space-y-2">
+              <p class="text-xs font-semibold text-stone-900 uppercase tracking-wider">Summary and takeaway:</p>
+              <ul class="list-disc pl-5 text-xs space-y-1.5 text-stone-600">
+                <li><strong>Summary:</strong> Baking the potatoes to reduce moisture before mashing. He shows the folding of butter, cream and egg yolks into the warm mash to create a stable emulsion before piping through a star nozzle onto a tray and baking to achieve a crisp golden crust with a fluffy interior. Brushing on garlic parsley butter at the end for taste and aesthetics.</li>
+                <li><strong>Takeaway:</strong> Turning a simple potato to a side dish that achieves fine-dining level status on visual platforms like Instagram through precision piping and sharp golden contrasts.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEM 3: YOUTUBE MASTERCLASS VIDEO -->
+        <div class="bg-softgray rounded-2xl p-6 border border-stone-200 grid lg:grid-cols-3 gap-6">
+          <div class="space-y-3">
+            <div class="inline-flex items-center space-x-2 bg-red-100 text-red-700 text-xs px-3 py-1 rounded-full font-bold">
+              <i class="fa-brands fa-youtube"></i>
+              <span>YouTube Video Segment</span>
+            </div>
+            <h4 class="font-serif font-bold text-xl text-stone-900">Coq au Vin Recipe - Classical French Cookery</h4>
+            <div class="p-3 bg-white rounded-xl border border-burgundy-200 text-xs text-stone-800 space-y-1">
+              <span class="font-bold text-burgundy-800 block">Citation:</span>
+              <p class="font-serif italic text-stone-600">Byatt, A. (2026). <em>Youtube Channel </em> </p>
+            </div>
+            <div class="rounded-xl overflow-hidden border border-stone-300 shadow-sm relative">
+              <img src="Images/coqauvin.png" alt="Coq au Vin" class="w-full h-full object-cover">
+              <div class="absolute inset-0  flex items-center justify-center">
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-2 space-y-3 text-xs sm:text-sm text-stone-700">
+            <h5 class="font-bold text-burgundy-800 text-base">Why I chose this:</h5>
+            <p>
+              This long-form YouTube video is a perfect masterclass in foundational French culinary technique. Coq au Vin is a benchmark dish in classical cookery, and Byatt uses this platform to showcase every pillar of traditional braising—from overnight marination and proper meat searing to starch-free sauce reduction and mounting with cold butter. Byatt honours the heritage of classic technique, demonstrating to viewers how patience, step-by-step discipline, and precise heat management transform humble rustic ingredients into an elevated, Michelin-standard classic.
+            </p>
+            <div class="bg-white p-4 rounded-xl border border-stone-200 space-y-2">
+              <p class="text-xs font-semibold text-stone-900 uppercase tracking-wider">Summary and takeaway:</p>
+              <ul class="list-disc pl-5 text-xs space-y-1.5 text-stone-600">
+                <li><strong>Summary:</strong> Byatt emphasizes overnight marination of chicken in full-bodied red wine and aromatics to break down muscle fibers. He takes viewers step-by-step through rendering lardons, searing chicken skin to achieve deep flavor compounds (Maillard reaction), and mounting the reduced braising liquid with cold butter for a velvety glaze.</li>
+                <li><strong>Takeaway:</strong> YouTube enables a masterclass-style narrative where timing, patience, and precise technique are taught far better than in cookbooks or short form videos in my opinion. He managed to make me crave a dish I had never seen or heard about until watching his video.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>  
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 2: FOODIE PERSONA & AUTHORED MEDIA (@JDINES)                      -->
+    <!-- ========================================================================= -->
+    <div id="section2" class="space-y-12 hidden">
+
+      <!-- HERO BANNER SECTION 2 -->
+      <section class="relative bg-stone-900 rounded-3xl overflow-hidden shadow-2xl border border-stone-800 text-white">
+        <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url(Images/culinary.jpg)"></div>
+        <div class="relative z-10 p-8 sm:p-12 lg:p-16 max-w-4xl">
+          <div class="inline-flex items-center space-x-2  text-amber-300 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+            <i class="fa-solid "></i>
+
+          </div>
+          <h2 class="text-4xl sm:text-5xl font-serif font-bold text-white tracking-tight mb-2">
+            JDines Culinary Journal
+          </h2>
+          <p class="text-amber-400 font-sans text-xl font-semibold mb-4"></p>
+          <p class="text-amber-300 text-base leading-relaxed mb-6 font-serif italic">
+            "Food is not just sustainance, it is a way of life."
+          </p>
+          <div class="flex items-center space-x-6 text-xs text-stone-300 pt-4 border-t border-stone-800">
+
+          </div>
+        </div>
+      </section>
+
+      <!-- FOODIE IDENTITY & THEORETICAL FRAMEWORK WRITE-UP -->
+      <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-stone-200 space-y-8">
+        <div class="flex items-center justify-between border-b border-stone-200 pb-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-burgundy-50 text-burgundy-700 flex items-center justify-center font-bold">
+              <i class="fa-solid fa-comment text-lg"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-serif font-bold text-stone-900">About me</h3>
+              <p class="text-xs text-stone-500 uppercase tracking-wider"></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 text-xs sm:text-sm text-stone-700 leading-relaxed">
+          <div class="space-y-4">
+            <h4 class="font-serif font-bold text-stone-900 text-base text-burgundy-800">How did I come up with my name?</h4>
+            <p>
+              My foodie handle <strong>@JDines</strong> is a deliberate play on words combining my name <strong>Jadrien</strong> with the active verb <em>Dines</em>. I selected this handle because I created it because my life always comes back to one question, “What’s on the table?”.
+            </p>
+            <p>
+              The <strong>@JDines</strong> identity brings together my obssession with all things food in a way that feels true to me. 
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="font-serif font-bold text-stone-900 text-base text-burgundy-800">Am I a foodie?</h4>
+            <p>
+              <strong>'Foodie'</strong> I definitely consider myself one. Food always has a way to bring people together. Think about all the festive times when the whole family would get together to cook and eat their traditional foods. This moments leave lasting memories and they are what fueled my passion for gastronomy. So, welcome to The Table, where I  will share my food which you might want on your plate.
+            </p>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 ORIGINAL AUTHORED FOODIE POSTS -->
+      <section class="space-y-8">
+        <div class="flex items-center space-x-3 bg-white p-6 rounded-3xl shadow-sm border border-stone-200">
+          <div class="w-10 h-10 rounded-xl bg-burgundy-50 text-burgundy-700 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-camera-retro text-lg"></i>
+          </div>
+          <div>
+            <h3 class="text-2xl font-serif font-bold text-stone-900">3 Original Authored Foodie Posts by @JDines</h3>
+            <p class="text-xs text-stone-500 uppercase tracking-wider"></p>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+
+          <!-- POST 1: RISOTTO -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-lg border border-stone-200 flex flex-col justify-between">
+            <div>
+              <div class="p-4 border-b border-stone-100 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <div class="w-8 h-8 rounded-full badge-burgundy flex items-center justify-center text-white text-xs font-bold">J</div>
+                  <div>
+                    <h5 class="text-xs font-bold text-stone-900">@JDines</h5>
+                    <p class="text-[10px] text-stone-400">Taylor's University</p>
+                  </div>
+                </div>
+                <span class="text-xs font-bold text-burgundy-700"></span>
+              </div>
+
+              <!-- POST IMAGE -->
+              <div class="relative h-64 bg-stone-900">
+                <img src="Images/nasilemak.jpg" alt="Malaysian Nasi Lemak" class="w-full h-full object-cover">
+
+              </div>
+
+              <!-- CAPTION CONTENT -->
+              <div class="p-5 space-y-3">
+                <div class="flex items-center space-x-3 text-stone-700 text-sm">
+                  <i class="fa-solid fa-heart text-red-500"></i>
+                  <i class="fa-solid fa-comment"></i>
+                  <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <p class="text-xs font-bold text-stone-900"></p>
+                <div class="text-xs text-stone-700 space-y-2 leading-relaxed">
+                  <p>
+                    <span class="font-bold text-stone-900">JDines</span> <strong>Practicing Malay cuisine today at Taylor's University.</strong> A full nasi lemak feast featuring coconut-pandan steamed rice, slow-braised chicken rendang, ikan bilis, peanuts, fresh cucumber, boiled eggs, cucur udang and hand-made sambal.
+                  </p>
+                  <p class="text-burgundy-700 font-medium text-[11px]">#TaylorsUniversity #CulinaryManagement #MalaysianCuisine #NasiLemak</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CAMERA ANGLE & VOCABULARY BREAKDOWN -->
+            <div class="p-4 bg-softgray border-t border-stone-200 text-xs space-y-2">
+              <span class="font-bold text-burgundy-800 uppercase tracking-wider block text-[10px]">Photography & Caption Analysis:</span>
+              <p class="text-stone-600"><strong>Camera Angle:</strong> A top-down flat-lay spread shot of the finished plates against the traditional batik cloth showing the culture and heritage of the cuisine.</p>
+              <p class="text-stone-600"><strong>Foodie View:</strong> As we know nasi lemak is sold almost everywhere in Malaysia. After learning how time consuming nasi lemak is, it made me appreciate the people which do this daily, selling by the roadside and in hawkers which usually goes for less than RM10.</p>
+            </div>
+          </div>
+
+          <!-- POST 2: SMASH BURGER REEL -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-lg border border-stone-200 flex flex-col justify-between">
+            <div>
+              <div class="p-4 border-b border-stone-100 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <div class="w-8 h-8 rounded-full badge-burgundy flex items-center justify-center text-white text-xs font-bold">J</div>
+                  <div>
+                    <h5 class="text-xs font-bold text-stone-900">@JDines</h5>
+                    <p class="text-[10px] text-stone-400">@noirdining.kl</p>
+                  </div>
+                </div>
+                <span class="text-xs font-bold text-burgundy-700"></span>
+              </div>
+
+              <!-- POST IMAGE -->
+              <div class="relative h-64 bg-stone-900">
+                <img src="Images/noir.jpg" alt="noirdining.kl" class="w-full h-full object-cover">
+
+              </div>
+
+              <!-- CAPTION CONTENT -->
+              <div class="p-5 space-y-3">
+                <div class="flex items-center space-x-3 text-stone-700 text-sm">
+                  <i class="fa-solid fa-heart text-red-500"></i>
+                  <i class="fa-solid fa-comment"></i>
+                  <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <p class="text-xs font-bold text-stone-900"></p>
+                <div class="text-xs text-stone-700 space-y-2 leading-relaxed">
+                  <p>
+                    <span class="font-bold text-stone-900">JDines</span> <strong>Immersive while affordable fine dining at Noir, Tamarind Square.</strong> I went there with my girlfriend for our 4th anniversary and needless to say, it became my favourite restaurant after only dining there once. Operating on an intimate format of just 10 guests per session across only 3 sessions a day, it feels deeply personlised. 
+                    
+                  </p>
+                  <p class="text-burgundy-700 font-medium text-[11px]">#Noirdining.kl #FineDining #ModernGastronomy #MixologyCraft #PlatingAesthetics </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CAMERA ANGLE & VOCABULARY BREAKDOWN -->
+            <div class="p-4 bg-softgray border-t border-stone-200 text-xs space-y-2">
+              <span class="font-bold text-burgundy-800 uppercase tracking-wider block text-[10px]">Photography & Caption Analysis:</span>
+              <p class="text-stone-600"><strong>Camera Angle:</strong> Low angle right at tabletop height brings the drinks into vertical alignment with the amuse-bouche cones. It draws the eye across the entire spread while capturing the chef working in the background kitchen, creating an immersive, chef's counter dining atmosphere.</p>
+              <p class="text-stone-600"><strong>Foodie View:</strong> The beauty of modern fine dining lies in intentionality and focus. Capping service at strictly 10guests persession and running only 3 sessions a da is an operational masterclass. It drastically reduceskitchen food waste through precise prep yield, allows the chefs to deliver a culinary journey without compromising dish quality and ensures courses arrive smoothly without long waits.</p>
+            </div>
+          </div>
+
+          <!-- POST 3: DUCK BREAST -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-lg border border-stone-200 flex flex-col justify-between">
+            <div>
+              <div class="p-4 border-b border-stone-100 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <div class="w-8 h-8 rounded-full badge-burgundy flex items-center justify-center text-white text-xs font-bold">J</div>
+                  <div>
+                    <h5 class="text-xs font-bold text-stone-900">@JDines</h5>
+                    <p class="text-[10px] text-stone-400">R&D Studio</p>
+                  </div>
+                </div>
+                <span class="text-xs font-bold text-burgundy-700"></span>
+              </div>
+
+              <!-- POST IMAGE -->
+              <div class="relative h-64 bg-stone-900">
+                <img src="Images/focaccia.jpg" alt="focaccia" class="w-full h-full object-cover">
+
+              </div>
+
+              <!-- CAPTION CONTENT -->
+              <div class="p-5 space-y-3">
+                <div class="flex items-center space-x-3 text-stone-700 text-sm">
+                  <i class="fa-solid fa-heart text-red-500"></i>
+                  <i class="fa-solid fa-comment"></i>
+                  <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <p class="text-xs font-bold text-stone-900"></p>
+                <div class="text-xs text-stone-700 space-y-2 leading-relaxed">
+                  <p>
+                    <span class="font-bold text-stone-900">JDines</span> <strong>Why high hydration focaccia is the hill I will die on.</strong> Fresh out of the ven from today's personal bread R&D session: confit garlic with olives and sun-dried tomatoes on the bottom; chili oil, ham and scallion on the top. 80% hydration is the sweet spot as well as cold fermenting in the fridge for 2 days.
+                  </p>
+                  <p class="text-burgundy-700 font-medium text-[11px]">#PersonalR&D #BreadBaking #Focaccia #FermentationScience</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CAMERA ANGLE & VOCABULARY BREAKDOWN -->
+            <div class="p-4 bg-softgray border-t border-stone-200 text-xs space-y-2">
+              <span class="font-bold text-burgundy-800 uppercase tracking-wider block text-[10px]">Photography & Caption Analysis:</span>
+              <p class="text-stone-600"><strong>Camera Angle:</strong> 60 degree high-angle overhead shot. Framing baking trays side-by-side to highlight topping variations while capturing the glistening crust of the focaccia under warm lighting. </p>
+              <p class="text-stone-600"><strong>Foodie View:</strong> Curiosity, patience and the creativity to curate is all part of my passion for food. Testing hydration ratios and fermentation times to achieve the perfect crust and crumb, mixing flavours that compliment each other and having it turn out incredibly delicious is what makes food so deeply rewarding.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 3: FOODIE PERSONA & AUTHORED MEDIA (@JDINES)                      -->
+    <!-- ========================================================================= -->
+    <div id="section3" class="space-y-12 hidden">
+
+      <!-- HERO BANNER 3-->
+      <section class="relative bg-stone-900 rounded-3xl overflow-hidden shadow-2xl border border-stone-800 text-white">
+        <div class="absolute inset-0 bg-cover opacity-30"></div>
+        <div class="relative z-10 p-8 sm:p-12 lg:p-16 max-w-4xl">
+          <h1 class="text-4xl text-5xl font-serif font-bold text-white text-center tracking-tight mb-3">
+            Construction in Progess. Stay tuned.
+          </h1>
+      </section>
+        </div>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 4: HOMEPAGE (DEFAULT VISIBLE SECTION ON LOAD)                     -->
+    <!-- ========================================================================= -->
+<div id="section4" class="space-y-12">      
+      <!-- Atmospheric Background Image & Dark Overlay -->
+      <div class="absolute inset-0 bg-cover bg-center z-0 opacity-70" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2000&q=80');"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-stone-950/50 z-10"></div>
+
+      <!-- Hero Content Container -->
+      <div class="relative z-20 max-w-4xl mx-auto text-center space-y-6">
+        
+        <!-- SUBTITLE HANDLE -->
+        <div class="text-amber-300 text-xs sm:text-sm font-semibold tracking-[0.3em] uppercase">
+          @JDINES
+        </div>
+
+        <!-- MAIN TITLE -->
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-white tracking-tight leading-tight">
+          Welcome to the table.
+        </h1>
+
+        <!-- TAGLINE -->
+        <p class="text-stone-300 text-sm sm:text-lg font-light max-w-2xl mx-auto leading-relaxed font-sans">
+          Deconstructing restaurant concepts, culinary techniques, and the systems behind modern dining.
+        </p>
+    </div>
+
+  </main>
+  
+
+  <!-- FOOTER SECTION -->
+<footer class="relative z-30 bg-stone-900 text-stone-400 py-10 mt-auto border-t border-stone-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
+      <div class="pt-4 border-t border-stone-800 text-stone-500 text-[11px]">
+        © 2026 Jadrien | @JDines
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- INTERACTIVE JAVASCRIPT FOR TABS AND NAVIGATION -->
+  <script>
+    function switchTab(tabId) {
+      // Hide all sections
+      document.getElementById('section1').classList.add('hidden');
+      document.getElementById('section2').classList.add('hidden');
+      document.getElementById('section3').classList.add('hidden');
+      document.getElementById('section4').classList.add('hidden');
+
+      // Show selected section
+      document.getElementById(tabId).classList.remove('hidden');
+    
+      // Update button styling
+      const btn1 = document.getElementById('nav-btn-section1');
+      const btn2 = document.getElementById('nav-btn-section2');
+      const btn3 = document.getElementById('nav-btn-section3');
+      const btn4 = document.getElementById('nav-btn-section4');
+
+      if (tabId === 'section1') {
+        btn1.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-burgundy-700 text-white shadow-md";
+        btn2.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+        btn3.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+        btn4.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+      } else if (tabId === 'section2') {
+        btn2.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-burgundy-700 text-white shadow-md";
+        btn1.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+        btn3.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+        btn4.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+      } else if (tabId === 'section3') {
+        btn3.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-burgundy-700 text-white shadow-md";
+        btn1.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+        btn2.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+        btn4.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+      } else {
+        btn4.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-burgundy-700 text-white shadow-md";
+        btn1.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+        btn2.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+        btn3.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-300 hover:text-white hover:bg-stone-800";
+      }
+
+      // Smooth scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+    window.onload = function() {
+  switchTab('section4');
+};
+  </script>
+</body>
+</html>
